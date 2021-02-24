@@ -1,0 +1,8 @@
+randinit -din animal.dat -cout animali.cod -xdim 12 -ydim 10 -topol hexa -neigh bubble -rand 123
+
+vsom -din animal.dat -cin animali.cod -cout animal2.cod -rlen 7000 -alpha 0.04 -radius 6 -rand 0
+
+vcal -din animal.dat -cin animal2.cod -cout animal2v.cod
+
+umat -cin animal2v.cod -ps -o animal2v.ps
+umat -cin animal2v.cod -eps -o animal2v.eps

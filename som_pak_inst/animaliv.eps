@@ -1,0 +1,197 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 1000 698
+%%Title: animaliv.cod
+%%Creator: umat V1.0
+%%CreationDate: Tue Mar 02 09:59:20 2021
+%%Pages: 0
+%%DocumentFonts: Helvetica
+%%DocumentNeededFonts: Helvetica
+%%EndComments
+%
+% PS header for umat - SOM to PS converter
+% Version 1.0 Tue Feb 28 1995
+% Author: Jussi Hynninen <hynde@nucleus.hut.fi>
+100 dict begin
+
+% predefine variables
+/yoff 0 def /xoff 0 def /xstep 0 def /ystep 0 def /y 0 def /radius 0 def
+/doborder false def
+% default font
+/fontname /Helvetica def
+% font size relative to radius
+/fontsize 1.0 def
+
+% default black and white tresholds
+/bt 0.0 def /wt 1.0 def
+
+% labelpallon sade suhteessa hexan sateeseen
+/ballrad 0.2 def
+
+% newline function. Moves the y coordinate to the next line
+/NL 
+{ /yoff yoff ystep sub def % next row
+  /y y 1 add def % add y by one
+  } bind def
+
+% start of line (for hexagonal lattice) - moves the current position in 
+% x direction to the correct place of the line
+/XSH
+{ xoff 
+  y 4 mod
+  dup 3 eq {pop 1} if
+  xstep 2 div mul
+  add
+  yoff moveto % move to start of line
+} bind def
+
+% start of line (for rectangular lattice) - moves the current position in 
+% x direction to the correct place of the line
+/XSR { xoff yoff moveto } bind def
+
+% set label color. If block is light -> label is black and same for dark block
+/sbc { .5 gt {0} {1} ifelse setgray } bind def
+
+% set gray level
+/G { 
+  100 div dup bt le {pop 0}
+  { dup wt ge {pop 1} {bt sub wt bt sub div} ifelse
+  } ifelse
+} bind def
+
+% unlabelled node
+/LN { 
+  gsave
+  G sbc
+  currentpoint radius ballrad mul 0 360 arc fill 
+  grestore
+  xstep 2 mul 0 rmoveto
+} bind def
+
+%select font
+/selfont {
+  fontname findfont radius fontsize mul scalefont setfont
+} bind def
+
+% print single label
+
+/LAB { 
+  gsave
+  G sbc
+  dup %duplicate string  
+  stringwidth
+  pop fontsize radius mul -0.25 mul exch
+  -2 div exch
+  rmoveto
+  show
+  grestore
+  xstep 2 mul 0 rmoveto
+} bind def
+
+% print multiple labels on one unit
+/ML {
+  gsave
+  G sbc
+  /numlabs exch def %number of labels
+  numlabs
+  2 div 
+  0.25 sub
+  radius fontsize mul mul neg
+  0 exch rmoveto
+  1 1 numlabs {
+    pop
+    gsave
+    dup %duplicate string  
+    stringwidth
+    pop 
+    -2 div 0
+    rmoveto
+    show
+    grestore
+    0 fontsize radius mul rmoveto
+  } for 
+  grestore
+  xstep 2 mul 0 rmoveto
+} bind def
+
+% print hexagon
+/H { 
+  gsave
+  G dup setgray %duplicate gray level
+  currentpoint translate
+  newpath 0 radius moveto
+  5 {60 rotate 0 radius lineto} repeat
+  closepath
+  doborder { gsave fill grestore sbc stroke}
+           { fill pop } ifelse
+  grestore  
+  xstep 0 rmoveto
+} bind def
+
+% print rectangle
+/R {
+  gsave
+  G dup setgray %duplicate gray level
+  currentpoint translate
+  newpath
+  xstep 0.5 mul dup moveto
+  xstep neg 0 rlineto
+  0 xstep neg rlineto
+  xstep 0 rlineto
+  closepath
+  doborder { gsave fill grestore sbc stroke}
+           { fill pop } ifelse
+  grestore  
+  xstep 0 rmoveto
+} bind def
+
+1 setlinewidth
+
+% End of umat PS header
+% Start image
+
+
+/radius 24.056261 def
+/xstep 41.666668 def
+/ystep 36.084393 def
+%%IncludeFont: Helvetica
+/fontname /Helvetica def
+selfont
+/doborder false def
+/wt 1.000000 def /bt 0.000000 def
+/y 0 def
+/xoff 20.833334 def
+/yoff 673.575331 def
+XSH 65 H 88 H 48 H 62 H 37 H 39 H 42 H 46 H 48 H 58 H 59 H 36 H 60 H 61 H 52 H 39 H 50 H 43 H 46 H 22 H 21 H 60 H 23 H NL
+XSH 42 H 33 H 19 H 8 H 36 H 57 H 37 H 50 H 31 H 74 H 59 H 62 H 58 H 43 H 67 H 66 H 58 H 49 H 49 H 21 H 7 H 23 H 0 H NL
+XSH 33 H 24 H 21 H 16 H 38 H 21 H 33 H 30 H 33 H 21 H 67 H 90 H 56 H 53 H 66 H 66 H 56 H 54 H 42 H 29 H 26 H 48 H 29 H NL
+XSH 56 H 32 H 30 H 30 H 40 H 75 H 30 H 50 H 41 H 34 H 72 H 97 H 82 H 55 H 100 H 49 H 47 H 67 H 36 H 52 H 18 H 34 H 29 H NL
+XSH 46 H 44 H 35 H 38 H 39 H 46 H 60 H 60 H 48 H 42 H 45 H 64 H 64 H 64 H 57 H 42 H 48 H 53 H 50 H 43 H 46 H 50 H 44 H NL
+XSH 46 H 32 H 44 H 63 H 19 H 68 H 61 H 60 H 47 H 35 H 48 H 49 H 61 H 58 H 38 H 48 H 52 H 47 H 66 H 51 H 36 H 59 H 44 H NL
+XSH 78 H 86 H 53 H 33 H 36 H 34 H 47 H 31 H 44 H 41 H 45 H 58 H 56 H 43 H 41 H 14 H 49 H 69 H 59 H 34 H 37 H 37 H 44 H NL
+XSH 84 H 78 H 83 H 35 H 37 H 51 H 61 H 28 H 53 H 60 H 42 H 37 H 54 H 11 H 27 H 90 H 7 H 50 H 50 H 69 H 45 H 37 H 44 H NL
+XSH 54 H 54 H 49 H 31 H 36 H 39 H 60 H 79 H 52 H 50 H 51 H 51 H 50 H 48 H 30 H 31 H 35 H 38 H 44 H 56 H 50 H 59 H 44 H NL
+XSH 51 H 8 H 44 H 34 H 48 H 59 H 65 H 52 H 64 H 57 H 50 H 38 H 83 H 29 H 41 H 66 H 20 H 37 H 19 H 41 H 20 H 22 H 74 H NL
+XSH 51 H 52 H 39 H 64 H 60 H 69 H 66 H 61 H 57 H 56 H 53 H 45 H 51 H 50 H 57 H 24 H 23 H 22 H 37 H 33 H 37 H 40 H 46 H NL
+XSH 63 H 38 H 11 H 33 H 50 H 60 H 67 H 85 H 33 H 53 H 73 H 57 H 52 H 72 H 65 H 73 H 50 H 8 H 58 H 68 H 54 H 41 H 46 H NL
+XSH 48 H 37 H 35 H 33 H 44 H 54 H 58 H 60 H 55 H 55 H 65 H 67 H 61 H 60 H 65 H 65 H 57 H 43 H 45 H 47 H 61 H 71 H 42 H NL
+XSH 48 H 30 H 77 H 41 H 47 H 57 H 21 H 55 H 37 H 64 H 66 H 62 H 76 H 49 H 69 H 78 H 26 H 54 H 21 H 75 H 53 H 42 H 42 H NL
+XSH 48 H 22 H 41 H 38 H 42 H 12 H 46 H 37 H 43 H 80 H 63 H 59 H 58 H 33 H 38 H 19 H 49 H 75 H 43 H 38 H 34 H 31 H 42 H NL
+XSH 60 H 75 H 41 H 49 H 45 H 14 H 61 H 56 H 45 H 41 H 64 H 31 H 78 H 56 H 32 H 42 H 47 H 51 H 34 H 48 H 28 H 25 H 54 H NL
+XSH 50 H 50 H 55 H 61 H 47 H 36 H 37 H 32 H 53 H 88 H 54 H 32 H 47 H 67 H 54 H 51 H 46 H 45 H 52 H 54 H 39 H 39 H 39 H NL
+XSH 37 H 29 H 78 H 40 H 66 H 37 H 45 H 79 H 51 H 57 H 50 H 37 H 57 H 52 H 65 H 51 H 29 H 74 H 54 H 15 H 39 H 49 H 36 H NL
+XSH 37 H 48 H 55 H 63 H 57 H 52 H 49 H 36 H 43 H 35 H 36 H 35 H 55 H 57 H 54 H 42 H 44 H 45 H 50 H 61 H 55 H 80 H 58 H NL
+/y 0 def
+/xoff 20.833334 def
+/yoff 673.575331 def
+XSH 65 LN 48 LN 37 LN 42 LN 48 LN 59 LN 60 LN 52 LN 50 LN 46 LN 21 LN 23 LN NL NL
+XSH 33 LN 21 LN 38 LN 33 LN 33 LN 67 LN 56 LN 66 LN 56 LN 42 LN 26 LN 29 LN NL NL
+XSH 46 LN 35 LN 39 LN 60 LN 48 LN 45 LN 64 LN 57 LN 48 LN 50 LN 46 LN (cl) 44 LAB NL NL
+XSH 78 LN 53 LN 36 LN 47 LN 44 LN 45 LN 56 LN 41 LN (snare) 49 LAB 59 LN 37 LN 44 LN NL NL
+XSH (guitar) 54 LAB 49 LN 36 LN 60 LN 52 LN 51 LN 50 LN 30 LN 35 LN (oboe) 44 LAB (tb) 50 LAB (cymbs) 44 LAB NL NL
+XSH 51 LN 39 LN 60 LN 66 LN 57 LN 53 LN 51 LN 57 LN (drums) 23 LAB 37 LN 37 LN (cello) 46 LAB NL NL
+XSH 48 LN 35 LN 44 LN (violin) 58 LAB 55 LN 65 LN 61 LN 65 LN 57 LN 45 LN 61 LN 42 LN NL NL
+XSH 48 LN 41 LN 42 LN 46 LN 43 LN 63 LN 58 LN 38 LN (tp) 49 LAB 43 LN (piano) 34 LAB 42 LN NL NL
+XSH 50 LN 55 LN 47 LN 37 LN 53 LN 54 LN (bass) 47 LAB 54 LN 46 LN 52 LN 39 LN 39 LN NL NL
+XSH (synth) 37 LAB (tuba) 55 LAB 57 LN 49 LN 43 LN 36 LN 55 LN 54 LN (mari) 44 LAB 50 LN 55 LN 58 LN NL NL
+end
+% end of EPS object
